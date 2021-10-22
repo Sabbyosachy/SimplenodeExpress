@@ -3,12 +3,12 @@ const cors = require('cors')
 const app = express()
 
 app.use(cors())
-app.use(express.json());
+app.use(express.json())
 const port = 5000
 
 const users=[
     {
-      "id": 1,
+      "id": 0,
       "name": "Leanne Graham",
       "username": "Bret",
       "email": "Sincere@april.biz",
@@ -22,7 +22,7 @@ const users=[
      
     },
     {
-      "id": 2,
+      "id": 1,
       "name": "Ervin Howell",
       "username": "Antonette",
       "email": "Shanna@melissa.tv",
@@ -37,7 +37,7 @@ const users=[
      
     },
     {
-      "id": 3,
+      "id": 2,
       "name": "Clementine Bauch",
       "username": "Samantha",
       "email": "Nathan@yesenia.net",
@@ -52,7 +52,7 @@ const users=[
      
     },
     {
-      "id": 4,
+      "id": 3,
       "name": "Patricia Lebsack",
       "username": "Karianne",
       "email": "Julianne.OConner@kory.org",
@@ -67,7 +67,7 @@ const users=[
      
     },
     {
-      "id": 5,
+      "id": 4,
       "name": "Chelsey Dietrich",
       "username": "Kamren",
       "email": "Lucio_Hettinger@annie.ca",
@@ -82,7 +82,7 @@ const users=[
      
     },
     {
-      "id": 6,
+      "id": 5,
       "name": "Mrs. Dennis Schulist",
       "username": "Leopoldo_Corkery",
       "email": "Karley_Dach@jasper.info",
@@ -97,7 +97,7 @@ const users=[
      
     },
     {
-      "id": 7,
+      "id": 6,
       "name": "Kurtis Weissnat",
       "username": "Elwyn.Skiles",
       "email": "Telly.Hoeger@billy.biz",
@@ -112,7 +112,7 @@ const users=[
    
     },
     {
-      "id": 8,
+      "id": 7,
       "name": "Nicholas Runolfsdottir V",
       "username": "Maxime_Nienow",
       "email": "Sherwood@rosamond.me",
@@ -127,7 +127,7 @@ const users=[
     
     },
     {
-      "id": 9,
+      "id": 8,
       "name": "Glenna Reichert",
       "username": "Delphine",
       "email": "Chaim_McDermott@dana.io",
@@ -142,7 +142,7 @@ const users=[
      
     },
     {
-      "id": 10,
+      "id": 9,
       "name": "Clementina DuBuque",
       "username": "Moriah.Stanton",
       "email": "Rey.Padberg@karina.biz",
@@ -165,8 +165,13 @@ app.get('/users',(req,res)=>{
  })
  
  app.post('/users',(req,res)=>{
-   console.log('hitting post');
-  res.send('Post got hitted', req.body);
+
+  const newUser=req.body;
+  newUser.id=users.length;
+  users.push(newUser);
+   console.log('hitting the post',req.body);
+  // res.send('Post got hitted');
+  res.json(newUser);
  })
 
  app.get('/users/:id',(req,res)=>{
